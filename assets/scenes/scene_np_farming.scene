@@ -35,7 +35,7 @@
     "_active": true,
     "_components": [],
     "_prefab": {
-      "__id__": 743
+      "__id__": 748
     },
     "_lpos": {
       "__type__": "cc.Vec3",
@@ -66,7 +66,7 @@
     },
     "autoReleaseAssets": false,
     "_globals": {
-      "__id__": 747
+      "__id__": 752
     },
     "_id": "c81db7cf-8383-4a35-ac9a-477db3680d2c"
   },
@@ -9461,6 +9461,21 @@
       },
       {
         "__id__": 742
+      },
+      {
+        "__id__": 743
+      },
+      {
+        "__id__": 744
+      },
+      {
+        "__id__": 745
+      },
+      {
+        "__id__": 746
+      },
+      {
+        "__id__": 747
       }
     ],
     "removedComponents": []
@@ -9595,6 +9610,65 @@
     "value": true
   },
   {
+    "__type__": "CCPropertyOverrideInfo",
+    "targetInfo": {
+      "__id__": 740
+    },
+    "propertyPath": [
+      "_clips",
+      "length"
+    ],
+    "value": 1
+  },
+  {
+    "__type__": "CCPropertyOverrideInfo",
+    "targetInfo": {
+      "__id__": 740
+    },
+    "propertyPath": [
+      "_clips",
+      "1"
+    ],
+    "value": {
+      "__uuid__": "13eb13e0-85f1-4005-8954-6fb51b2c79c0@73b7f",
+      "__expectedType__": "cc.AnimationClip"
+    }
+  },
+  {
+    "__type__": "CCPropertyOverrideInfo",
+    "targetInfo": {
+      "__id__": 740
+    },
+    "propertyPath": [
+      "_defaultClip"
+    ],
+    "value": null
+  },
+  {
+    "__type__": "CCPropertyOverrideInfo",
+    "targetInfo": {
+      "__id__": 740
+    },
+    "propertyPath": [
+      "_clips",
+      "0"
+    ],
+    "value": {
+      "__uuid__": "5d858866-0d8d-4036-95f6-b65dc216eec7@73b7f",
+      "__expectedType__": "cc.AnimationClip"
+    }
+  },
+  {
+    "__type__": "CCPropertyOverrideInfo",
+    "targetInfo": {
+      "__id__": 740
+    },
+    "propertyPath": [
+      "playOnLoad"
+    ],
+    "value": false
+  },
+  {
     "__type__": "cc.PrefabInfo",
     "root": null,
     "asset": null,
@@ -9602,7 +9676,7 @@
     "instance": null,
     "targetOverrides": [
       {
-        "__id__": 744
+        "__id__": 749
       }
     ],
     "nestedPrefabInstanceRoots": [
@@ -9620,7 +9694,7 @@
       "__id__": 728
     },
     "sourceInfo": {
-      "__id__": 745
+      "__id__": 750
     },
     "propertyPath": [
       "CapsuleController"
@@ -9629,7 +9703,7 @@
       "__id__": 728
     },
     "targetInfo": {
-      "__id__": 746
+      "__id__": 751
     }
   },
   {
@@ -9647,28 +9721,28 @@
   {
     "__type__": "cc.SceneGlobals",
     "ambient": {
-      "__id__": 748
-    },
-    "shadows": {
-      "__id__": 749
-    },
-    "_skybox": {
-      "__id__": 750
-    },
-    "fog": {
-      "__id__": 751
-    },
-    "octree": {
-      "__id__": 752
-    },
-    "skin": {
       "__id__": 753
     },
-    "lightProbeInfo": {
+    "shadows": {
       "__id__": 754
     },
-    "postSettings": {
+    "_skybox": {
       "__id__": 755
+    },
+    "fog": {
+      "__id__": 756
+    },
+    "octree": {
+      "__id__": 757
+    },
+    "skin": {
+      "__id__": 758
+    },
+    "lightProbeInfo": {
+      "__id__": 759
+    },
+    "postSettings": {
+      "__id__": 760
     },
     "bakedWithStationaryMainLight": false,
     "bakedWithHighpLightmap": false

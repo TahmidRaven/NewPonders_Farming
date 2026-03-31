@@ -49,20 +49,26 @@ export class CharacterStateController extends Component {
         this.SetStateSafe(CharacterState.IDLE);
     }
 
-    update(deltaTime: number) {
-        if(!this.m_stateManager) return;
+update(deltaTime: number) {
+    if(!this.m_stateManager) return;
 
-        const moveDir = this.CharacterControllerBehavior.m_moveDir;
-        const isMoving = moveDir.lengthSqr() > 0.001;
+    const moveDir = this.CharacterControllerBehavior.m_moveDir;
+    const isMoving = moveDir.lengthSqr() > 0.001;
 
-        if(isMoving) {
-            if(this.m_targetState !== CharacterState.WALK) this.SetStateSafe(CharacterState.WALK);
-        } else {
-            if(this.m_targetState !== CharacterState.IDLE) this.SetStateSafe(CharacterState.IDLE);
+    if(isMoving) {
+        if(this.m_targetState !== CharacterState.WALK) {
+            console.log("Switching to Walk"); 
+            this.SetStateSafe(CharacterState.WALK);
         }
-        
-        this.m_stateManager.Update(deltaTime);
+    } else {
+        if(this.m_targetState !== CharacterState.IDLE) {
+            console.log("Switching to Idle"); 
+            this.SetStateSafe(CharacterState.IDLE);
+        }
     }
+    
+    this.m_stateManager.Update(deltaTime);
+}
 
     private SetStateSafe(newState: CharacterState) {
         this.m_targetState = newState;

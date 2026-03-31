@@ -12,16 +12,10 @@
     ],
     "_variables": {
       "idle": {
-        "__id__": 32
+        "__id__": 30
       },
       "walk": {
-        "__id__": 33
-      },
-      "drive": {
-        "__id__": 34
-      },
-      "harvest": {
-        "__id__": 35
+        "__id__": 31
       }
     }
   },
@@ -149,7 +143,7 @@
       "clone": null
     },
     "clip": {
-      "__uuid__": "13eb13e0-85f1-4005-8954-6fb51b2c79c0@73b7f",
+      "__uuid__": "52a84a67-4525-43f4-9c2c-a586ebd2f86c@73b7f",
       "__expectedType__": "cc.AnimationClip"
     }
   },
@@ -229,7 +223,7 @@
     },
     "duration": 0.3,
     "relativeDuration": false,
-    "exitConditionEnabled": true,
+    "exitConditionEnabled": false,
     "_exitCondition": 1
   },
   {
@@ -276,7 +270,7 @@
     },
     "duration": 0.3,
     "relativeDuration": false,
-    "exitConditionEnabled": true,
+    "exitConditionEnabled": false,
     "_exitCondition": 1
   },
   {
@@ -355,33 +349,7 @@
     "to": {
       "__id__": 6
     },
-    "conditions": [
-      {
-        "__id__": 30
-      }
-    ]
-  },
-  {
-    "__type__": "cc.animation.UnaryCondition",
-    "operator": 0,
-    "operand": {
-      "__id__": 31
-    }
-  },
-  {
-    "__type__": "cc.animation.BindableBoolean",
-    "variable": "idle",
-    "value": false
-  },
-  {
-    "__type__": "cc.animation.PlainVariable",
-    "_type": 1,
-    "_value": true
-  },
-  {
-    "__type__": "cc.animation.PlainVariable",
-    "_type": 1,
-    "_value": true
+    "conditions": []
   },
   {
     "__type__": "cc.animation.PlainVariable",
