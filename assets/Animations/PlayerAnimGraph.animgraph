@@ -143,7 +143,7 @@
       "clone": null
     },
     "clip": {
-      "__uuid__": "52a84a67-4525-43f4-9c2c-a586ebd2f86c@73b7f",
+      "__uuid__": "fe3b517a-49a5-49a3-bc05-ffa7641370f7@73b7f",
       "__expectedType__": "cc.AnimationClip"
     }
   },
@@ -187,7 +187,7 @@
       "clone": null
     },
     "clip": {
-      "__uuid__": "10fccee5-31a4-4b85-81b7-624f7ccf8206@73b7f",
+      "__uuid__": "7f7a1d24-cfcd-4292-a28e-108178fd873f@73b7f",
       "__expectedType__": "cc.AnimationClip"
     }
   },
