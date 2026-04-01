@@ -1,7 +1,8 @@
-import { _decorator, Component, Node, Vec3, Quat, Camera } from 'cc';
+import { _decorator, Component, Node, Vec3, Quat, Camera, CapsuleCharacterController } from 'cc';
 import { Joystick2D } from './Joystick2D';
 import { SimpleCharacterController } from './SimpleCharacterController';
 const { ccclass, property } = _decorator;
+
 
 @ccclass('CharacterControllerBehavior')
 export class CharacterControllerBehavior extends Component {

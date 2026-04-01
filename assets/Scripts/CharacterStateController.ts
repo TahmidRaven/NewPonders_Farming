@@ -16,14 +16,22 @@ class CharacterStateContext {
 class IdleState implements State<CharacterStateContext> {
     name: string = CharacterState.IDLE;
     preEnterDelayMs = 0; postEnterDelayMs = 0; preExitDelayMs = 0; postExitDelayMs = 0;
-    OnEnter(context: CharacterStateContext) { context.AnimationController.setValue("idle", true); }
+    OnEnter(context: CharacterStateContext) { 
+        // Ensure walk is false when entering idle
+        context.AnimationController.setValue("walk", false);
+        context.AnimationController.setValue("idle", true); 
+    }
     OnExit(context: CharacterStateContext)  { context.AnimationController.setValue("idle", false); }
 }
 
 class WalkState implements State<CharacterStateContext> {
     name: string = CharacterState.WALK;
     preEnterDelayMs = 0; postEnterDelayMs = 0; preExitDelayMs = 0; postExitDelayMs = 0;
-    OnEnter(context: CharacterStateContext) { context.AnimationController.setValue("walk", true); }
+    OnEnter(context: CharacterStateContext) { 
+        // Ensure idle is false when entering walk
+        context.AnimationController.setValue("idle", false);
+        context.AnimationController.setValue("walk", true); 
+    }
     OnExit(context: CharacterStateContext)  { context.AnimationController.setValue("walk", false); }
 }
 
@@ -46,29 +54,31 @@ export class CharacterStateController extends Component {
         this.m_stateManager.RegisterState(new IdleState());
         this.m_stateManager.RegisterState(new WalkState());
 
-        this.SetStateSafe(CharacterState.IDLE);
+        // Explicitly force the Idle state and the target state variable
+        this.m_targetState = CharacterState.IDLE;
+        this.m_stateManager.ChangeState(CharacterState.IDLE);
     }
 
-update(deltaTime: number) {
-    if(!this.m_stateManager) return;
+    update(deltaTime: number) {
+        if(!this.m_stateManager || !this.CharacterControllerBehavior) return;
 
-    const moveDir = this.CharacterControllerBehavior.m_moveDir;
-    const isMoving = moveDir.lengthSqr() > 0.001;
+        const moveDir = this.CharacterControllerBehavior.m_moveDir;
+        // Check for magnitude to avoid floating point errors
+        const isMoving = moveDir.lengthSqr() > 0.001;
 
-    if(isMoving) {
-        if(this.m_targetState !== CharacterState.WALK) {
-            console.log("Switching to Walk"); 
-            this.SetStateSafe(CharacterState.WALK);
+        if(isMoving) {
+            if(this.m_targetState !== CharacterState.WALK) {
+                this.SetStateSafe(CharacterState.WALK);
+            }
+        } else {
+            // This ensures if the joystick is released, we revert to IDLE
+            if(this.m_targetState !== CharacterState.IDLE) {
+                this.SetStateSafe(CharacterState.IDLE);
+            }
         }
-    } else {
-        if(this.m_targetState !== CharacterState.IDLE) {
-            console.log("Switching to Idle"); 
-            this.SetStateSafe(CharacterState.IDLE);
-        }
+        
+        this.m_stateManager.Update(deltaTime);
     }
-    
-    this.m_stateManager.Update(deltaTime);
-}
 
     private SetStateSafe(newState: CharacterState) {
         this.m_targetState = newState;

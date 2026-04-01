@@ -20,7 +20,7 @@ export class GameManager extends Component {
     public joystick: Joystick2D = null!;
 
     onLoad() {
-        // Strict Singleton Pattern
+        
         if (GameManager.Instance) {
             this.node.destroy();
             return;

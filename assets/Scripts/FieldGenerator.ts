@@ -10,11 +10,10 @@ export class FieldGenerator extends Component {
     @property
     public spacing: number = 0.6;
 
+    /** * Radius of the circular field
+     */
     @property
-    public fieldWidth: number = 20;
-
-    @property
-    public fieldDepth: number = 20;
+    public fieldRadius: number = 10;
     
     private readonly GRID_CELL_SIZE: number = 5; 
     private wheatGrid: Map<number, Map<number, Node[]>> = new Map(); 
@@ -24,17 +23,26 @@ export class FieldGenerator extends Component {
         this.generateField();
     }
 
+    /**
+     * Generates wheat stalks within a circular radius.
+     */
     public generateField() {
         this.wheatGrid.clear();
-        const halfWidth = this.fieldWidth / 2;
-        const halfDepth = this.fieldDepth / 2;
         
-        for (let x = -halfWidth; x < halfWidth; x += this.spacing) {
-            for (let z = -halfDepth; z < halfDepth; z += this.spacing) {
-                const wheatStalk = instantiate(this.wheatPrefab);
-                wheatStalk.setParent(this.node);
-                wheatStalk.setWorldPosition(new Vec3(x, 0, z));
-                this.addToGrid(wheatStalk);
+        // Iterate through a square bounding box that encompasses the circle
+        for (let x = -this.fieldRadius; x <= this.fieldRadius; x += this.spacing) {
+            for (let z = -this.fieldRadius; z <= this.fieldRadius; z += this.spacing) {
+                
+                // Calculate distance from center (0,0) using Pythagorean theorem: x^2 + z^2 = r^2
+                const distanceFromCenter = Math.sqrt(x * x + z * z);
+
+                // Only spawn if the point is inside the radius
+                if (distanceFromCenter <= this.fieldRadius) {
+                    const wheatStalk = instantiate(this.wheatPrefab);
+                    wheatStalk.setParent(this.node);
+                    wheatStalk.setWorldPosition(new Vec3(x, 0, z));
+                    this.addToGrid(wheatStalk);
+                }
             }
         }
     }
@@ -60,6 +68,7 @@ export class FieldGenerator extends Component {
         const playerChunkX = Math.floor(worldPos.x / this.GRID_CELL_SIZE);
         const playerChunkZ = Math.floor(worldPos.z / this.GRID_CELL_SIZE);
 
+        // Check the current chunk and all 8 surrounding chunks
         for (let dx = -1; dx <= 1; dx++) {
             for (let dz = -1; dz <= 1; dz++) {
                 const zMap = this.wheatGrid.get(playerChunkX + dx);
